@@ -14,7 +14,7 @@ music.src = `musics/${musics.menu}`;
 music.volume = 0;
 music.loop = 1;
 var musicEase = "";
-var musicVolume = 0;
+var musicVolume = 0.5;
 
 var currentMusicElement = document.querySelector("#currentMusic");
 var currentMusic = musics.menu;
@@ -26,8 +26,8 @@ document.addEventListener(
   () => {
     document.body.classList.remove("clicktoplay");
 
-    // music.play();
-    // EaseVolumeIn(musicVolume);
+    music.play();
+    EaseVolumeIn(musicVolume, 2000);
 
     currentMusicElement.style.display = "block";
     let oldMusic = currentMusic;
