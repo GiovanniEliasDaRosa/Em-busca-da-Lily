@@ -1,0 +1,39 @@
+#creditsmenu {
+  position: absolute;
+  inset: 0;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+#credits__text {
+  display: flex;
+  width: clamp(min(100vw, 500px), 900px, 90vw);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+#credits__text > p {
+  margin-bottom: 1rem;
+}
+
+#credits__text > :is(h2, h3, h4, h5, h6) {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+#closecreditsmenu {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  width: 2em;
+  height: 2em;
+  padding: 0;
+  border-radius: 50%;
+}

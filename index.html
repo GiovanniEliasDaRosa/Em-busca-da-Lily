@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Em busca da lily</title>
+    <link rel="shortcut icon" href="imgs/icon.png" type="image/x-icon" />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/menu.css" />
+    <link rel="stylesheet" href="css/icons.css" />
+    <link rel="stylesheet" href="css/credits.css" />
+    <link rel="stylesheet" href="css/story.css" />
+    <link rel="stylesheet" href="css/fight.css" />
+
+    <script src="js/functions.js"></script>
+    <script src="js/storytelling.js" defer></script>
+    <script src="js/soundmanager.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/fight.js" defer></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        document.body.classList.remove("loading");
+      });
+    </script>
+
+    <style>
+      html {
+        background-color: hsl(0, 0%, 15%);
+      }
+      .loading > *,
+      .loading::before {
+        opacity: 0;
+      }
+
+      .loading::after {
+        content: "";
+        position: absolute;
+        display: block;
+        left: calc(50% - 2em);
+        top: calc(50% - 2em);
+        width: 4em;
+        height: 4em;
+        background: transparent;
+        border: solid 0.5em hsl(0, 0%, 30%);
+        border-radius: 50%;
+        border-top-color: rgb(59, 237, 104);
+        z-index: 10;
+        animation: loadingAnimation 1s ease-out infinite;
+      }
+
+      @keyframes loadingAnimation {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body class="loading clicktoplay">
+    <div id="menu">
+      <h1 id="menu__title">Em busca da Lily</h1>
+      <img src="imgs/PersonagemPrincipalMenu.png" alt="" id="menu__img" />
+
+      <div id="options">
+        <button class="menubuttons icons play" id="playgamebutton">Jogar</button>
+        <button class="menubuttons icons about" id="opencreditsmenu">Sobre</button>
+        <!-- <button class="menubuttons" id="opencreditsmenu">Creditos</button> -->
+      </div>
+
+      <p id="menu__version">Version 1.0.0</p>
+      <p id="menu__credits">
+        Jogo feito por
+        <a href="https://github.com/TiagoCitranguloDaSilva" target="_blank">Tiago C. da Silva</a>
+        <a href="https://github.com/TiagoCitranguloDaSilva" target="_blank">Giovanni E.</a>
+      </p>
+    </div>
+
+    <div id="creditsmenu">
+      <button class="icons nomargin close" id="closecreditsmenu"></button>
+
+      <div id="credits__text">
+        <p>
+          Jogo feito por
+          <a href="https://github.com/TiagoCitranguloDaSilva" target="_blank">Tiago C. da Silva</a>
+          <a href="https://github.com/TiagoCitranguloDaSilva" target="_blank">Giovanni E.</a>
+        </p>
+
+        <h1>Sobre</h1>
+        <p>
+          Em busca da Lily é um jogo totalmente original onde tudo nele é feito por mim, Tiago
+          Citrangulo da Silva.
+        </p>
+        <p>
+          Tudo que você irá ver foi feito por mim, não teve nada pegado da Internet e a história
+          também é criação própria.
+        </p>
+        <p>
+          O jogo conta a história do Brad que teve sua irmã sequestrada por um agiota a quem devia
+          dinheiro, durante a jornada, você e Brad terão que ficar mais fortes, mais habilidosos e
+          descobrir onde a Lily(a irmã) está sendo mantida.
+        </p>
+        <p>
+          O jogo começou a ser feito na noite de 19 de dezembro de 2023, ainda não há uma previsão
+          de finalização mas acredito que não vai estar pronto antes de março de 2024.
+        </p>
+        <p>
+          Se gostou do jogo por favor me avise, pois deu muito trabalho e case ache algum problema,
+          me contate via
+          <a href="https://github.com/TiagoCitranguloDaSilva" target="_blank">Github</a> ou via
+          <a href="mailto: tiagocitrangulo256@gmail.com">Email</a>
+        </p>
+
+        <h1>Creditos</h1>
+        <p>Jogo feito por</p>
+        <a href="https://github.com/TiagoCitranguloDaSilva" target="_blank">Tiago C. da Silva</a>
+        <a href="https://github.com/TiagoCitranguloDaSilva" target="_blank">Giovanni E.</a>
+
+        <h2>Créditos para músicas e efeitos sonoros usados</h2>
+        <a
+          href="https://opengameart.org/content/sfx-the-ultimate-2017-8-bit-mini-pack"
+          target="_blank"
+        >
+          Efeitos sonoros
+        </a>
+
+        <a href="https://opengameart.org/content/pulsar-famitracker-2a03" target="_blank">
+          Musica
+        </a>
+
+        <a href="https://opengameart.org/content/kir-played-the-snes-again" target="_blank">
+          Musica 2
+        </a>
+
+        <a href="https://opengameart.org/content/victory" target="_blank">
+          Effeito sonoro de ganhar
+        </a>
+      </div>
+    </div>
+
+    <div id="story">
+      <div id="bubble" class="bubble bubble-left">
+        <p id="bubble__text">
+          Type any text here and the bubble will grow to fit the text no matter how many lines.
+          Isn't that nifty?
+        </p>
+        <button class="icons nexthistory" id="story__continue">Clique para continuar</button>
+      </div>
+      <img
+        src="imgs/personagens/principal/Talking.png"
+        alt=""
+        id="story__principal"
+        class="story__imgs"
+      />
+      <img
+        src="imgs/personagens/enemy_1/Idle.png"
+        alt=""
+        id="story__secundario"
+        class="story__imgs"
+      />
+      <button class="icons jump" id="story__jump">Pular história</button>
+    </div>
+
+    <div id="fight">
+      <div id="fight__ground">
+        <div class="fight__characters" id="fight__user">
+          <img class="fight__imgs" src="imgs/personagens/principal/Idle.png" alt="" />
+        </div>
+        <div class="fight__characters" id="fight__enemy">
+          <img class="fight__imgs" src="imgs/personagens/enemy_1/Idle.png" alt="" />
+        </div>
+      </div>
+
+      <div class="bullet" id="meteor" style="display: none"></div>
+      <div class="bullet" id="energyBall" style="display: none"></div>
+
+      <div id="user" class="fight__ui">
+        <div class="user__section" id="life">
+          <div class="bar" id="lifeBar">
+            <div class="fillShower" style="width: 100%"></div>
+            <div class="fill" style="width: 100%"></div>
+          </div>
+          <p class="number" id="lifeNumber">5 / 5</p>
+        </div>
+        <div class="user__section" id="mana">
+          <div class="bar" id="manaBar">
+            <div class="fillShower" style="width: 100%"></div>
+            <div class="fill" style="width: 60%"></div>
+          </div>
+          <p class="number" id="manaNumber">3 / 5</p>
+        </div>
+        <div id="attack">
+          <button class="attack__button" id="weakAttack">
+            <span class="attack__show icons damage" id="damage">1</span>
+            <span class="attack__show icons star" id="mana">1</span>
+          </button>
+          <button class="attack__button" id="strongAttack">
+            <span class="attack__show icons damage" id="damage">2</span>
+            <span class="attack__show icons star" id="mana">5</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="enemy" class="fight__ui">
+        <div class="user__section" id="life">
+          <div class="bar" id="lifeBar">
+            <div class="fillShower" style="width: 100%"></div>
+            <div class="fill" style="width: 60%"></div>
+          </div>
+          <p class="number" id="lifeNumber">3 / 5</p>
+        </div>
+        <div class="user__section" id="mana">
+          <div class="bar" id="manaBar">
+            <div class="fillShower" style="width: 100%"></div>
+            <div class="fill" style="width: 100%"></div>
+          </div>
+          <p class="number" id="manaNumber">5 / 5</p>
+        </div>
+      </div>
+
+      <div id="fightEnded">
+        <h1 id="fightEnded__h1">Você <span id="fightEnded__type" data-won>ganhou</span>!</h1>
+
+        <div id="fightEnded__buttons">
+          <button class="fightEnded__buttons icons home" id="fightEnded__home">
+            Voltar para o menu
+          </button>
+          <button class="fightEnded__buttons icons again" id="fightEnded__tryagain">
+            Tentar denovo
+          </button>
+          <button class="fightEnded__buttons icons next" id="fightEnded__continue">
+            Continuar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <p class="icons music" id="currentMusic" style="display: none">[MUSIC]</p>
+
+    <div id="Audios">
+      <audio src="musics/Juhani Junkala [Chiptune Adventures] 1. Stage 1.wav" id="music"></audio>
+      <audio src="sounds/Footstep.wav" data-type="Footstep.wav"></audio>
+      <audio src="sounds/Start.wav" data-type="Start.wav"></audio>
+      <audio src="sounds/Victory.mp3" data-type="Victory.mp3"></audio>
+    </div>
+
+    <script src="js/createAudios.js"></script>
+  </body>
+</html>

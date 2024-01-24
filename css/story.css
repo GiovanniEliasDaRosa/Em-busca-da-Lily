@@ -1,0 +1,118 @@
+#story {
+  height: 100%;
+  background-position: center bottom !important;
+  background-size: cover !important;
+  padding: 1em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  align-content: center;
+  position: relative;
+
+  grid-template-areas:
+    "bubble bubble"
+    "principal secundario";
+}
+
+#bubble {
+  grid-area: bubble;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
+}
+
+#story__continue {
+  justify-self: end;
+  border-radius: 1em;
+  color: white;
+}
+
+#story__principal {
+  grid-area: principal;
+}
+
+/* #story__secundario {
+  grid-area: secundario;
+  opacity: 0.2;
+  filter: blur(2px) contrast(0) brightness(0);
+} */
+
+[no-iamge] {
+  opacity: 0;
+}
+
+.story__imgs {
+  display: block;
+  width: 100%;
+  height: calc(100vh - 16em);
+  object-fit: contain;
+}
+
+.bubble {
+  position: relative;
+  font-size: 18px;
+  line-height: 24px;
+  display: block;
+  width: clamp(min(100vw, 500px), 900px, 90vw);
+  margin-inline: auto;
+  background: #fff;
+  border-radius: 2em;
+  padding: 1em;
+  text-align: center;
+  color: #000;
+  height: 8em;
+  box-shadow: 0 0.5em 0 hsla(0, 0%, 0%, 0.5);
+}
+
+.bubble::before,
+.bubble::after {
+  position: absolute;
+  content: "";
+  width: 0px;
+  height: 0px;
+  border: 1em solid transparent;
+  z-index: 2;
+}
+
+.bubble::after {
+  z-index: 1;
+}
+
+.bubble-left::before {
+  border-left-color: #fff;
+  border-top-color: #fff;
+  left: 25%;
+  bottom: -1.5em;
+}
+
+.bubble-left::after {
+  border-left-color: hsla(0, 0%, 0%, 0.5);
+  border-top-color: hsla(0, 0%, 0%, 0.5);
+  left: 25%;
+  bottom: -2em;
+}
+
+.bubble-right::before {
+  border-right-color: #fff;
+  border-top-color: #fff;
+  right: 25%;
+  bottom: -1.5em;
+}
+
+.bubble-right::after {
+  border-right-color: hsla(0, 0%, 0%, 0.5);
+  border-top-color: hsla(0, 0%, 0%, 0.5);
+  right: 25%;
+  bottom: -2em;
+}
+
+#story__jump {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  border-radius: 1em;
+  color: white;
+}

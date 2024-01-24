@@ -1,0 +1,319 @@
+#fight {
+  height: 100%;
+  /* background: radial-gradient(circle at 10% 10%, yellow 0%, hsla(0, 0%, 0%, 0) 25%), */
+  background: linear-gradient(0deg, rgb(23, 100, 147), rgb(47, 166, 196));
+}
+
+.fight__ui {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  width: 18em;
+  background-color: rgb(130, 76, 35);
+  border-radius: 0 0 0.5em 0;
+  padding: 0.5em;
+  box-shadow: 0 0.5em 0 hsla(0, 0%, 0%, 0.5);
+  /* height: 17em; */
+
+  position: absolute;
+  top: 0;
+}
+
+/* enemy */
+#user {
+  left: 0;
+}
+
+/* enemy */
+#enemy {
+  right: 0;
+  border-radius: 0 0 0 0.5em;
+}
+
+/* commons UI */
+.fight__ui * {
+  font-family: monospace;
+  font-size: 1.25rem;
+}
+
+.user__section {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  background-color: rgb(99, 55, 22);
+  border-radius: 0 0 0.5em 0;
+  border-radius: 0.5em;
+  padding: 0.5em;
+}
+
+.bar {
+  background-color: rgb(55, 28, 7);
+  width: 100%;
+  height: 1em;
+  border-radius: 0.5em;
+  display: grid;
+}
+
+.bar .fill {
+  grid-column: 1;
+  grid-row: 1;
+  height: 1em;
+  background-color: rgb(232, 64, 22);
+  border-radius: inherit;
+}
+
+.bar .fillShower {
+  grid-column: 1;
+  grid-row: 1;
+  height: 1em;
+  background-color: hsl(0, 0%, 100%);
+  box-shadow: inset 0 0.25em 0 0 hsla(0, 0%, 0%, 0.5);
+  border-radius: inherit;
+}
+
+.bar .fillShower.good {
+  background-color: hsla(0, 0%, 100%, 0.5);
+}
+
+.number {
+  text-align: end;
+  color: white;
+}
+
+.bar#manaBar .fill {
+  background-color: rgb(68, 22, 219);
+}
+
+#attack {
+  /* display: grid;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  align-items: center; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.5em;
+  background-color: rgb(99, 55, 22);
+  border-radius: 0.5em;
+  padding: 0.25em;
+}
+
+.attack__button {
+  border: none;
+  background-color: rgb(167, 108, 63);
+  border-radius: 1em;
+  /* width: 4em; */
+  cursor: pointer;
+  color: hsl(0, 0%, 100%);
+  box-shadow: 0 0.25em hsla(0, 0%, 0%, 0.5);
+
+  display: grid;
+  grid-template-columns: 1fr;
+  /* gap: 0.25em; */
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em;
+}
+
+.attack__show {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .attack__show:nth-child(1) {
+  padding-bottom: 0.25em;
+  border-bottom: solid 0.1em hsla(0, 0%, 0%, 0.5);
+} */
+
+.attack__show::before {
+  /* padding: 0.25em; */
+  color: hsl(12, 83%, 50%);
+  text-shadow: 0 0.25em 0 rgba(0, 0, 0, 0.5);
+  -webkit-text-stroke: 0.1em hsl(12, 90%, 77%);
+  /* background-color: rgb(136, 85, 46); */
+  /* border-radius: 50%; */
+}
+
+.attack__show.star::before {
+  color: hsl(254, 82%, 47%);
+  -webkit-text-stroke: 0.1em hsl(254, 77%, 77%);
+}
+
+.attack__button:is(:focus-visible, :hover) {
+  background-color: rgb(196, 139, 95);
+  /* scale: 1.1; */
+  transform: translateY(0.125em);
+  box-shadow: 0 0.125em hsla(0, 0%, 0%, 0.5);
+}
+
+/* bullet */
+.bullet {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  background-color: red;
+  border: solid 0.1em hsla(0, 0%, 100%, 0.25);
+}
+
+#meteor {
+  background-color: hsl(29, 85%, 46%);
+  box-shadow: 0 0 0.75em 0.25em hsla(29, 87%, 54%, 0.8), 0 0 1em 1em hsla(29, 87%, 54%, 0.4);
+}
+
+#energyBall {
+  top: 4em;
+  background-color: hsl(214, 90%, 46%);
+  box-shadow: 0 0 0.75em 0.25em hsla(214, 82%, 53%, 0.8), 0 0 1em 1em hsla(214, 82%, 53%, 0.4);
+}
+
+/* ground */
+#fight__ground {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 10em;
+  background: linear-gradient(0deg, hsl(106, 68%, 31%), hsl(106, 61%, 48%));
+  box-shadow: 0 -0.5em 0 0 hsl(106, 69%, 55%);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+}
+
+.fight__characters {
+  width: 4em;
+  height: 2em;
+  background-color: hsla(0, 0%, 0%, 0.2);
+  position: relative;
+  border-radius: 50%;
+}
+
+.fight__imgs {
+  position: absolute;
+  left: 50%;
+  transform-origin: 50% 100%;
+  transform: translateX(-50%);
+  top: -11em;
+  width: 12em;
+}
+
+#fight__enemy .fight__imgs {
+  left: calc(50% - 0.5em);
+}
+
+.fight__characters:has([data-dead]) {
+  transition: 1s ease-out 2s;
+  background-color: hsla(0, 0%, 0%, 0);
+}
+
+[data-dead] {
+  animation: 1s rotateUser cubic-bezier(1, 0.05, 0.7, 1.18) forwards, 4s dead ease-out forwards;
+}
+
+#fight__enemy:has([data-dead]) > [data-dead] {
+  animation: 1s rotateEnemy cubic-bezier(1, 0.05, 0.7, 1.18) forwards, 4s dead ease-out forwards;
+}
+
+@keyframes dead {
+  0% {
+    filter: blur(0) brightness(1) invert(0);
+  }
+  33% {
+    filter: blur(0.5em) brightness(0.2) invert(0);
+  }
+  66% {
+    filter: blur(1em) brightness(0) invert(1);
+    opacity: 1;
+  }
+  100% {
+    filter: blur(3em) brightness(0) invert(1);
+    opacity: 0;
+  }
+}
+
+@keyframes rotateUser {
+  0% {
+    transform: translateX(-50%) rotate(0deg);
+  }
+  100% {
+    transform: translateX(-50%) rotate(-90deg);
+  }
+}
+
+@keyframes rotateEnemy {
+  0% {
+    transform: translateX(-50%) rotate(0deg);
+  }
+  100% {
+    transform: translateX(-50%) rotate(90deg);
+  }
+}
+
+/* Won the fight */
+#fightEnded {
+  position: absolute;
+  inset: 0;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 3fr;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  gap: 1em;
+  isolation: isolate;
+}
+
+#fightEnded[data-lost] {
+  background-color: hsla(0, 100%, 72%, 0.5);
+}
+
+#fightEnded[data-won] {
+  background-color: hsla(135, 100%, 71%, 0.5);
+}
+
+#fightEnded::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: 2s ended ease-out forwards;
+}
+
+#fightEnded__buttons {
+  display: flex;
+  gap: 0.5em;
+}
+
+#fightEnded__h1 {
+  color: white;
+}
+
+#fightEnded__type {
+  font-weight: 900;
+  color: rgb(255, 114, 114);
+}
+
+#fightEnded__type[data-won] {
+  color: rgb(105, 255, 143);
+}
+
+.fightEnded__buttons {
+  font-size: 1.5rem;
+}
+
+@keyframes ended {
+  0% {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
