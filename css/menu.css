@@ -43,6 +43,10 @@
   animation-play-state: paused;
 }
 
+#menu[data-dontanimate]::before {
+  animation: none !important;
+}
+
 @keyframes moveBack {
   from {
     background-position: 0 0;
@@ -87,14 +91,8 @@
   animation: none !important;
 }
 
-#menu__version {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  padding: 1em;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.25);
-  border-radius: 0 1em 0 0;
+#menu__title[data-dontanimate] {
+  animation: none !important;
 }
 
 #menu__credits {
@@ -105,6 +103,14 @@
   color: white;
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: 1em 0 0 0;
+  display: block;
+  z-index: 1100;
+}
+
+#menu__version {
+  padding-right: 1em;
+  margin-right: 1em;
+  border-right: solid 0.1em currentColor;
 }
 
 @keyframes animation {
@@ -134,20 +140,21 @@
 #options {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   gap: 1em;
   background-color: hsla(0, 0%, 0%, 0.25);
   border: solid 0.5em hsla(0, 0%, 0%, 0.125);
   padding: 2em;
   border-radius: 2em;
-  backdrop-filter: blur(0.25em);
+  backdrop-filter: blur(0.2em);
+  -webkit-backdrop-filter: blur(0.2em);
 }
 
 .menubuttons {
   border-radius: 0.5em;
   border: solid 0.1em hsla(0, 0%, 100%, 0.2);
   background-color: rgb(192, 192, 192);
-  padding: 0.75em 0.75em;
+  padding: 0.75em;
   font-size: 2rem;
   color: black;
   cursor: pointer;
@@ -169,66 +176,39 @@
   background-color: rgb(110, 103, 103);
 }
 
-/* about */
-/* #aboutContainer {
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+@media (max-width: 1000px), (max-height: 700px) {
+  #menu {
+    grid-template-rows: 2fr 3fr;
+  }
+  #options {
+    padding: 0.5em;
+    display: grid;
+    grid-template-columns: repeat(3, 14em);
+    grid-template-rows: 1fr;
+    max-width: max(30em, 80vw);
+    overflow-x: auto;
+  }
+  .menubuttons {
+    flex: 0 0 auto;
+    padding: 0.5em;
+  }
+  #menu__credits {
+    padding: 0.5em;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 1em 0 0 0;
+  }
+
+  #menu__version {
+    padding-right: 0.5em;
+    margin-right: 0.5em;
+  }
 }
 
-#about {
-  width: clamp(calc(50vw - 1rem), 50vw, calc(100vw - 1rem));
-  height: clamp(calc(50vh - 1rem), 50vh, calc(100vh - 1rem));
-  background-color: rgb(235, 145, 49);
-} */
-
-#aboutContainer {
-  position: fixed;
-  inset: 0;
-  background-color: hsla(0, 0%, 0%, 0.2);
-  backdrop-filter: blur(2px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow-y: hidden;
-}
-
-#about {
-  width: clamp(min(100vw, 500px), 900px, 90vw);
-  /* height: clamp(min(100vh, 400px), calc(100vh - 2em), 100vh); */
-  height: clamp(min(100vh, 400px), auto, 100vh);
-  max-height: 100vh;
-  padding: 1em;
-  background-color: hsl(228, 7%, 70%);
-  border: solid 0.2em hsl(240, 1%, 26%);
-  border-radius: 0.5em;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-#aboutcontent {
-  overflow-y: auto;
-}
-
-#aboutcontent > p {
-  margin-bottom: 1rem;
-}
-
-#aboutcontent > :is(h1, h2, h3, h4, h5, h6) {
-  margin-bottom: 0.5rem;
-}
-
-#closeAboutButton {
-  position: absolute;
-  top: -0.5em;
-  right: -0.5em;
-  width: 2em;
-  height: 2em;
-  border-radius: 50%;
-  color: white;
+@media (max-width: 1000px) {
+  #menu__img {
+    left: 2em;
+    top: calc(50% - 6em);
+    width: 12em;
+  }
 }

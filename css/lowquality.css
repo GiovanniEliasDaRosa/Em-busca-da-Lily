@@ -1,0 +1,7 @@
+#menu__credits,
+#aboutContainer,
+#options,
+#cofigurations {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}

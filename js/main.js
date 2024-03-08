@@ -24,6 +24,7 @@ function ShowCredits(type) {
   Disable(menu);
   Disable(fight);
   Enable(creditsmenu);
+  let time = 4000;
 
   // credits__text.style = `position: relative;`;
 
@@ -47,13 +48,21 @@ function ShowCredits(type) {
 
   setTimeout(() => {
     credits__text.style.transition = "transform 15s ease-out";
+    time = 15000;
     if (type == "menu") {
       credits__text.style.transition = "transform 4s ease-out";
+      time = 4000;
     }
+    time += 100;
   }, 100);
 
   setTimeout(() => {
     credits__text.style.transform = `translateY(0%)`;
+    time += 1000;
+
+    setTimeout(() => {
+      credits__text.style.overflowY = "auto";
+    }, time);
   }, 1000);
 
   // credits__text.style = `position: absolute; transition: none; top: ${offsetX}px`;
@@ -102,20 +111,19 @@ function ShowCredits(type) {
 /* ^^^^ Credits Stuff */
 
 playgamebutton.addEventListener("click", () => {
-  if (part != 0) {
-    Disable(menu);
-    Disable(creditsmenu);
-    Disable(storyDiv);
-    Disable(fight);
-    Enable(storyDiv);
-    Type();
-    return;
-  }
   Disable(menu);
   Disable(creditsmenu);
-  Enable(storyDiv);
-  EaseVolumeOut(500, musics.history);
-  Type();
+  Disable(storyDiv);
+  Disable(fight);
+  Disable(storyDiv);
+  if (user.life == 0) {
+    user.character.removeAttribute("data-dead", "");
+    Enable(fight);
+    Fight();
+  } else {
+    Enable(storyDiv);
+    StartNextStoryPart();
+  }
 });
 
 closecreditsmenu.addEventListener("click", () => {
@@ -134,52 +142,6 @@ opencreditsmenu.addEventListener("click", () => {
 Disable(creditsmenu);
 Disable(storyDiv);
 Disable(fight);
-
-// Click 'play'
-// Disable(menu);
-// Enable(storyDiv);
-// EaseVolumeOut(musics.history);
-
-// Drag menu image
-
-// const menu__img = document.querySelector("#menu__img");
-
-// var pos1 = 0,
-//   pos2 = 0,
-//   pos3 = 0,
-//   pos4 = 0;
-
-// menu__img.onmousedown = dragMouseDown;
-
-// function dragMouseDown(e) {
-//   e = e || window.event;
-//   e.preventDefault();
-//   // get the mouse cursor position at startup:
-//   pos3 = e.clientX;
-//   pos4 = e.clientY;
-//   document.onmouseup = closeDragElement;
-//   // call a function whenever the cursor moves:
-//   document.onmousemove = elementDrag;
-// }
-
-// function elementDrag(e) {
-//   e = e || window.event;
-//   e.preventDefault();
-//   // calculate the new cursor position:
-//   pos1 = pos3 - e.clientX;
-//   pos2 = pos4 - e.clientY;
-//   pos3 = e.clientX;
-//   pos4 = e.clientY;
-//   // set the element's new position:
-//   menu__img.style.top = menu__img.offsetTop - pos2 + "px";
-//   menu__img.style.left = menu__img.offsetLeft - pos1 + "px";
-// }
-
-// function closeDragElement() {
-//   /* stop moving when mouse button is released:*/
-//   document.onmouseup = null;
-//   document.onmousemove = null;
-// }
 
 const menu__title = document.querySelector("#menu__title");
 

@@ -23,6 +23,10 @@ for (let i = 1; i <= 10; i++) {
   CreateAudio(`sounds/strongattack/strongattack${i}.wav`, `strongattack${i}.wav`);
 }
 
+for (let i = 1; i <= 7; i++) {
+  CreateAudio(`sounds/died/died${i}.wav`, `died${i}.wav`);
+}
+
 // Test audios
 // var soundpla = "";
 // soundpla = setInterval(() => {

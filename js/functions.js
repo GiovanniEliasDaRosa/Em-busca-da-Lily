@@ -1,12 +1,12 @@
 function Disable(element) {
   element.setAttribute("disabled", "");
-  element.setAttribute("aria-disabled", "");
+  element.setAttribute("aria-disabled", "true");
   element.style.display = "none";
 }
 
 function Enable(element) {
-  element.removeAttribute("disabled", "");
-  element.removeAttribute("aria-disabled", "");
+  element.removeAttribute("disabled");
+  element.removeAttribute("aria-disabled");
   element.style.display = "";
 }
 
@@ -20,33 +20,17 @@ function clamp(number, min, max) {
 
 // Fight Ui Stuff
 function UpdateUI(who) {
-  UpdateUIPart(
-    who.mana,
-    who.manaMax,
-    who.manaNumber,
-    who.manaBar,
-    who.manaBarShower,
-    who.animatingMana
-  );
-  UpdateUIPart(
-    who.life,
-    who.lifeMax,
-    who.lifeNumber,
-    who.lifeBar,
-    who.lifeBarShower,
-    who.animatingLife
-  );
-
-  return;
+  UpdateUIPart(who.mana, who.manaMax, who.manaNumber, who.manaBar, who.manaBarShower);
+  UpdateUIPart(who.life, who.lifeMax, who.lifeNumber, who.lifeBar, who.lifeBarShower);
 }
 
-function UpdateUIPart(value, valueMax, number, bar, barShower, animating) {
+function UpdateUIPart(value, valueMax, number, bar, barShower) {
   let percent = value / valueMax;
   let barWidth = percent * 100 + "%";
 
   let OldValue = Number(number.textContent.split("/")[0]);
-  var NewValue = OldValue;
-  var type = 1;
+  // var NewValue = OldValue;
+  // var type = 1;
 
   if (OldValue > value) {
     bar.style.transition = barAnimation;
@@ -63,24 +47,28 @@ function UpdateUIPart(value, valueMax, number, bar, barShower, animating) {
   bar.style.width = barWidth;
   barShower.style.width = barWidth;
 
-  if (NewValue > value) {
-    type = -1;
-  }
+  number.textContent = `${value} / ${valueMax}`;
 
-  NewValue - value;
+  // if (NewValue > value) {
+  //   type = -1;
+  // }
 
-  let time = 200 / (NewValue - value);
+  // NewValue - value;
 
-  clearInterval(animating);
-  animating = setInterval(() => {
-    if (NewValue == value) {
-      clearInterval(animating);
-      number.textContent = `${value} / ${valueMax}`;
-    }
+  // let time = 200 / (NewValue - value);
 
-    number.textContent = `${NewValue} / ${valueMax}`;
-    NewValue += type;
-  }, time);
+  // clearInterval(animating[0]);
+
+  // animating[0] = setInterval(() => {
+  //   if (NewValue == value) {
+  //     clearInterval(animating[0]);
+  //     animating[0] = "";
+  //     number.textContent = `${value} / ${valueMax}`;
+  //   }
+
+  //   number.textContent = `${NewValue} / ${valueMax}`;
+  //   NewValue += type;
+  // }, time);
 }
 
 function UpdateButtons() {
@@ -129,3 +117,11 @@ function GetMusic() {
   music.play();
   EaseVolumeIn(musicVolume);
 }
+
+document.addEventListener("keydown", (e) => {
+  if (e.code == "KeyX") {
+    GetMusic();
+  } else if (e.code == "KeyY") {
+    InstaKill();
+  }
+});

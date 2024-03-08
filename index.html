@@ -12,12 +12,15 @@
     <link rel="stylesheet" href="css/credits.css" />
     <link rel="stylesheet" href="css/story.css" />
     <link rel="stylesheet" href="css/fight.css" />
+    <link rel="stylesheet" href="css/cofigurations.css" />
 
+    <script src="js/dialogs.js"></script>
     <script src="js/functions.js"></script>
     <script src="js/storytelling.js" defer></script>
     <script src="js/soundmanager.js" defer></script>
     <script src="js/main.js" defer></script>
     <script src="js/fight.js" defer></script>
+    <script src="js/configmenu.js" defer></script>
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
@@ -66,60 +69,120 @@
       <img src="imgs/PersonagemPrincipalMenu.png" alt="" id="menu__img" />
 
       <div id="options">
-        <button class="menubuttons icons play" id="playgamebutton">Jogar</button>
-        <button class="menubuttons icons about" id="opencreditsmenu">Sobre</button>
+        <button class="menubuttons icons play" id="playgamebutton" title="Jogar">Jogar</button>
+
+        <button class="menubuttons icons about" id="opencreditsmenu" title="Sobre">Sobre</button>
+
+        <button class="menubuttons icons cog" id="openconfigmenu" title="Config">Config</button>
         <!-- <button class="menubuttons" id="opencreditsmenu">Creditos</button> -->
       </div>
 
-      <p id="menu__version">Version 1.0.0</p>
       <p id="menu__credits">
-        Jogo feito por
-        <a href="https://github.com/TiagoCitranguloDaSilva" target="_blank">Tiago C. da Silva</a>
-        <a href="https://github.com/TiagoCitranguloDaSilva" target="_blank">Giovanni E.</a>
+        <span id="menu__version"> Versão 1.1.0</span> Jogo feito por
+        <a href="https://github.com/GiovanniEliasDaRosa" target="_blank">Giovanni Elias Da Rosa</a>
       </p>
+
+      <div id="cofigurations">
+        <div id="cofigurations__inside">
+          <div class="config__section">
+            <button class="config__section_button" id="changequality">
+              <span id="qualitySpan" class="configmenu_span">Com</span> desfoque
+            </button>
+            <p class="config__section__description">
+              Sem desfoque: Remove efeitos de desfoque de elementos<br />
+              Com desfoque: Adiciona efeitos de desfoque de elementos
+            </p>
+          </div>
+          <div class="config__section">
+            <input
+              type="range"
+              name="typespeedslider"
+              id="typespeedslider"
+              min="40"
+              value="60"
+              max="100"
+              step="20"
+              title="Velocidade de escrita"
+            />
+            <p class="config__section__description" id="typespeedtext">
+              Velocidade de escrita: <span id="typespeedvalue">Normal</span>
+            </p>
+          </div>
+          <div class="config__section">
+            <button class="config__section_button" id="animateMenu">
+              Animar Menu <span id="animateMenuSpan" class="configmenu_span">tudo</span>
+            </button>
+            <p class="config__section__description">
+              Tudo: Anima o texto e o fundo<br />
+              Só o texto: Anima só o texto<br />
+              Só o fundo: Anima só o fundo<br />
+              Nada: Não anima nada
+            </p>
+          </div>
+
+          <button
+            class="icons nomargin close"
+            id="closeconfigmenu"
+            title="Fechar menu de configuração"
+          ></button>
+        </div>
+      </div>
     </div>
 
     <div id="creditsmenu">
-      <button class="icons nomargin close" id="closecreditsmenu"></button>
+      <button class="icons nomargin close" id="closecreditsmenu" title="Fechar créditos"></button>
 
       <div id="credits__text">
-        <p>
-          Jogo feito por
-          <a href="https://github.com/TiagoCitranguloDaSilva" target="_blank">Tiago C. da Silva</a>
-          <a href="https://github.com/TiagoCitranguloDaSilva" target="_blank">Giovanni E.</a>
-        </p>
-
         <h1>Sobre</h1>
         <p>
-          Em busca da Lily é um jogo totalmente original onde tudo nele é feito por mim, Tiago
-          Citrangulo da Silva.
+          Em busca da Lily é um jogo totalmente original onde tudo nele foi feito por mim, Giovanni
+          Elias da Rosa
         </p>
         <p>
-          Tudo que você irá ver foi feito por mim, não teve nada pegado da Internet e a história
+          Tiago Citrangulo da Silva criou um jogo com o mesmo nome e estilo, com o jogo dele eu
+          peguei inspiração e fiz esse, no começo era só um teste para ver se eu conseguiria criar o
+          jogo igual dele e eu consegui, mas a versão dele era beta e faltava algumas coisas, e foi
+          ai que eu decidi continuar neste projeto
+        </p>
+
+        <p>
+          Tudo que você irá ou viu foi feito por mim, não teve nada pego da Internet e a história
           também é criação própria.
         </p>
+
+        <h1>Sobre a história</h1>
         <p>
           O jogo conta a história do Brad que teve sua irmã sequestrada por um agiota a quem devia
           dinheiro, durante a jornada, você e Brad terão que ficar mais fortes, mais habilidosos e
           descobrir onde a Lily(a irmã) está sendo mantida.
         </p>
         <p>
-          O jogo começou a ser feito na noite de 19 de dezembro de 2023, ainda não há uma previsão
-          de finalização mas acredito que não vai estar pronto antes de março de 2024.
+          O jogo começou a ser feito na noite de 18 de Janeiro de 2024, ainda não há uma previsão de
+          finalização, mas vou tentar atualizar ele.
         </p>
         <p>
           Se gostou do jogo por favor me avise, pois deu muito trabalho e case ache algum problema,
           me contate via
-          <a href="https://github.com/TiagoCitranguloDaSilva" target="_blank">Github</a> ou via
-          <a href="mailto: tiagocitrangulo256@gmail.com">Email</a>
+          <a href="https://github.com/GiovanniEliasDaRosa" target="_blank">Github</a> ou via
+          <a href="mailto:gamesgstudio@gmail.com">Email</a>
         </p>
 
         <h1>Creditos</h1>
-        <p>Jogo feito por</p>
-        <a href="https://github.com/TiagoCitranguloDaSilva" target="_blank">Tiago C. da Silva</a>
-        <a href="https://github.com/TiagoCitranguloDaSilva" target="_blank">Giovanni E.</a>
+        <p>
+          Jogo feito por
+          <a href="https://github.com/TiagoCitranguloDaSilva" target="_blank"
+            >Giovanni Elias Da Rosa</a
+          >
+        </p>
 
-        <h2>Créditos para músicas e efeitos sonoros usados</h2>
+        <p>
+          Inspiração pega pelo jogo do
+          <a href="https://github.com/TiagoCitranguloDaSilva" target="_blank">Tiago C. da Silva</a>
+        </p>
+
+        <h2>Créditos a músicas e sons usados</h2>
+
+        <h3>Sfx The Ultimate 2017 8 Bit Mini Pack</h3>
         <a
           href="https://opengameart.org/content/sfx-the-ultimate-2017-8-bit-mini-pack"
           target="_blank"
@@ -127,17 +190,35 @@
           Efeitos sonoros
         </a>
 
-        <a href="https://opengameart.org/content/pulsar-famitracker-2a03" target="_blank">
-          Musica
+        <h3>4 Chiptunes Adventure</h3>
+        <a href="https://opengameart.org/content/4-chiptunes-adventure" target="_blank">
+          Juhani Junkala [Chiptune Adventures] 1. Stage 1.wav
         </a>
 
-        <a href="https://opengameart.org/content/kir-played-the-snes-again" target="_blank">
-          Musica 2
+        <a href="https://opengameart.org/content/4-chiptunes-adventure" target="_blank">
+          Juhani Junkala [Chiptune Adventures] 2. Stage 2.wav
         </a>
 
-        <a href="https://opengameart.org/content/victory" target="_blank">
-          Effeito sonoro de ganhar
+        <a href="https://opengameart.org/content/4-chiptunes-adventure" target="_blank">
+          Juhani Junkala [Chiptune Adventures] 3. Boss Fight.wav
         </a>
+
+        <a href="https://opengameart.org/content/4-chiptunes-adventure" target="_blank">
+          Juhani Junkala [Chiptune Adventures] 4. Stage Select.wav
+        </a>
+
+        <h3>Neo Springcore</h3>
+        <a href="https://opengameart.org/content/neo-springcore" target="_blank">
+          neo springcore.mp3
+        </a>
+
+        <h3>Victory</h3>
+        <a href="https://opengameart.org/content/victory" target="_blank">Som de ganhar</a>
+
+        <h3>Boss Battle #1 V1</h3>
+        <a href="https://opengameart.org/content/boss-battle-1-8-bit-re-upload" target="_blank"
+          >Boss Battle #1 V1</a
+        >
       </div>
     </div>
 
@@ -147,30 +228,32 @@
           Type any text here and the bubble will grow to fit the text no matter how many lines.
           Isn't that nifty?
         </p>
-        <button class="icons nexthistory" id="story__continue">Clique para continuar</button>
+        <button class="icons nexthistory" id="story__continue" title="Continuar história">
+          Clique para continuar
+        </button>
       </div>
       <img
-        src="imgs/personagens/principal/Talking.png"
+        src="imgs/characters/user/Talking.png"
         alt=""
         id="story__principal"
         class="story__imgs"
       />
       <img
-        src="imgs/personagens/enemy_1/Idle.png"
+        src="imgs/characters/enemy_1/Idle.png"
         alt=""
         id="story__secundario"
         class="story__imgs"
       />
-      <button class="icons jump" id="story__jump">Pular história</button>
+      <button class="icons jump" id="story__jump" title="Pular história">Pular história</button>
     </div>
 
     <div id="fight">
       <div id="fight__ground">
         <div class="fight__characters" id="fight__user">
-          <img class="fight__imgs" src="imgs/personagens/principal/Idle.png" alt="" />
+          <img class="fight__imgs" src="imgs/characters/user/Idle.png" alt="" />
         </div>
         <div class="fight__characters" id="fight__enemy">
-          <img class="fight__imgs" src="imgs/personagens/enemy_1/Idle.png" alt="" />
+          <img class="fight__imgs" src="imgs/characters/enemy_1/Idle.png" alt="" />
         </div>
       </div>
 
@@ -236,6 +319,21 @@
           </button>
         </div>
       </div>
+    </div>
+
+    <div id="soundmusic">
+      <button
+        class="soundmusic__button icons nomargin music"
+        id="MusicButton"
+        title="Botão de música"
+      ></button>
+      <!-- <button class="soundmusic__button icons nomargin music slash" data-nomusic></button> -->
+      <button
+        class="soundmusic__button icons nomargin sound"
+        id="SoundButton"
+        title="Botão de som"
+      ></button>
+      <!-- <button class="soundmusic__button icons nomargin nosound"></button> -->
     </div>
 
     <p class="icons music" id="currentMusic" style="display: none">[MUSIC]</p>

@@ -13,10 +13,31 @@
   display: flex;
   width: clamp(min(100vw, 500px), 900px, 90vw);
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  overflow-y: auto;
+  overflow-x: hidden;
+  overflow-y: hidden;
   height: 100vh;
+  padding: 2em 1em;
+  scrollbar-gutter: stable;
+}
+
+#credits__text::-webkit-scrollbar {
+  background-color: hsl(0, 0%, 10%);
+  width: 0.5em;
+}
+
+#credits__text::-webkit-scrollbar-button {
+  background-color: hsl(0, 0%, 20%);
+}
+
+#credits__text::-webkit-scrollbar-thumb {
+  background-color: hsl(0, 0%, 25%);
+}
+
+#credits__text:focus-within::-webkit-scrollbar-thumb,
+#credits__text:hover::-webkit-scrollbar-thumb {
+  background-color: hsl(0, 0%, 50%);
 }
 
 #credits__text > p {
@@ -28,6 +49,24 @@
   margin-bottom: 0.5rem;
 }
 
+#credits__text > h1 {
+  text-align: center;
+  width: 100%;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+#credits__text > h1::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 0.2em;
+  background: linear-gradient(90deg, transparent 0%, white 20%, white 80%, transparent 100%);
+}
+
 #closecreditsmenu {
   position: absolute;
   top: 1em;
@@ -36,4 +75,5 @@
   height: 2em;
   padding: 0;
   border-radius: 50%;
+  z-index: 1;
 }

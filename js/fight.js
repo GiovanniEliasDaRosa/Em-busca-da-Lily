@@ -25,6 +25,9 @@ var whendiedlife = 0;
 
 var CurrentFight = 0;
 
+Disable(meteor);
+Disable(energyBall);
+
 fightEnded__home.addEventListener("click", () => {
   Disable(fight);
   Disable(creditsmenu);
@@ -47,8 +50,7 @@ fightEnded__continue.addEventListener("click", () => {
   Disable(menu);
   Disable(creditsmenu);
   Enable(storyDiv);
-  EaseVolumeOut(500, musics.history);
-  Type();
+  StartNextStoryPart();
 });
 
 const fighters = [
@@ -109,7 +111,7 @@ var user = {
   animatingLife: "",
   character: fight.querySelector("#fight__user > .fight__imgs"),
   imgs: {
-    path: "imgs/personagens/principal/",
+    path: "imgs/characters/user/",
     imgs: {
       idle: "Idle.png",
       lightAttack: "LightAttack.png",
@@ -144,7 +146,7 @@ var enemy = {
   animatingLife: "",
   character: fight.querySelector("#fight__enemy > .fight__imgs"),
   imgs: {
-    path: "imgs/personagens/enemy_1/",
+    path: "imgs/characters/enemy_1/",
     imgs: {
       idle: "Idle.png",
       lightAttack: "LightAttack.png",
@@ -153,7 +155,10 @@ var enemy = {
   },
 };
 
+var oldFight = 0;
+
 function Fight() {
+  oldFight = CurrentFight;
   Disable(menu);
   Disable(story);
   Disable(fightEnded);
@@ -163,7 +168,7 @@ function Fight() {
   user.life = user.lifeMax;
   user.mana = user.manaMax;
 
-  if (CurrentFight > 0) {
+  if (oldFight != CurrentFight) {
     user.mana += 1;
     user.manaMax += 1;
   }
@@ -219,11 +224,11 @@ function LightAttack(shooter, target) {
     return;
   }
 
+  // shooter.manaNumber.textContent = `${shooter.mana} / ${shooter.manaMax}`;
   shooter.mana -= shooter.damageWeak.mana;
   UpdateUI(shooter);
 
-  const speed = 20;
-  var direction = 1;
+  // var direction = 1;
 
   let shooterImgs = shooter.imgs;
   let shooterPath = shooterImgs.path;
@@ -236,16 +241,18 @@ function LightAttack(shooter, target) {
   var usewidthtarget = 32;
 
   if (shooter == enemy) {
-    direction = -1;
+    // direction = -1;
     usewidth = +32;
     usewidthtarget = targetBound.width - 32;
   }
 
-  shooterBound.width;
   var startX = shooterBound.x + usewidth;
   var startY = shooterBound.y + shooterBound.height / 2 - 28;
-
   const targetBoundX = targetBound.x + usewidthtarget;
+
+  var speed = (targetBoundX - startX) / 10;
+
+  Enable(energyBall);
 
   energyBall.style = `left: ${startX}px; top: ${startY}px`;
 
@@ -256,7 +263,8 @@ function LightAttack(shooter, target) {
   PlayTypeSound("lightattack", 0.5);
 
   AttackingLight = setInterval(() => {
-    currentPosition += speed * direction;
+    // currentPosition += speed * direction;
+    currentPosition += speed;
     energyBall.style.left = `${currentPosition}px`;
 
     if (
@@ -265,11 +273,13 @@ function LightAttack(shooter, target) {
     ) {
       PlayTypeSound("hit", 0.5);
       clearInterval(AttackingLight);
-      energyBall.style.display = "none";
+      Disable(energyBall);
 
+      // target.lifeNumber.textContent = `${target.life} / ${target.lifeMax}`;
       target.life -= shooter.damageWeak.strength;
       UpdateUI(target);
 
+      // shooter.manaNumber.textContent = `${shooter.mana} / ${shooter.manaMax}`;
       shooter.mana = clamp(shooter.mana + 2, 0, shooter.manaMax);
       UpdateUI(shooter);
 
@@ -292,7 +302,7 @@ function LightAttack(shooter, target) {
         UpdateButtons();
       }
     }
-  }, 10);
+  }, 100);
 }
 
 strongAttack.addEventListener("click", () => {
@@ -318,10 +328,9 @@ function StrongAttack(shooter, target) {
     return;
   }
 
+  // shooter.manaNumber.textContent = `${shooter.mana} / ${shooter.manaMax}`;
   shooter.mana -= shooter.damageStrong.mana;
   UpdateUI(shooter);
-
-  const speed = 20;
 
   let shooterImgs = shooter.imgs;
   let shooterPath = shooterImgs.path;
@@ -330,11 +339,14 @@ function StrongAttack(shooter, target) {
 
   const targetBound = target.character.getBoundingClientRect();
   const targetBoundY = targetBound.y;
+  var speed = targetBound.y / 10;
 
   var startX = targetBound.x + targetBound.width / 2;
   var startY = 0;
 
   meteor.style = `left: ${startX}px; top: ${startY}px`;
+
+  Enable(meteor);
 
   var currentPosition = startY;
 
@@ -349,13 +361,14 @@ function StrongAttack(shooter, target) {
     if (currentPosition > targetBoundY) {
       clearInterval(AttackingStrong);
       PlayTypeSound("hit", 0.5);
-      meteor.style.display = "none";
+      Disable(meteor);
 
+      // target.lifeNumber.textContent = `${target.life} / ${target.lifeMax}`;
       target.life -= shooter.damageStrong.strength;
       UpdateUI(target);
 
+      // shooter.manaNumber.textContent = `${shooter.mana} / ${shooter.manaMax}`;
       shooter.mana = clamp(shooter.mana + 2, 0, shooter.manaMax);
-      shooter.manaNumber.textContent = `${shooter.mana} / ${shooter.manaMax}`;
       UpdateUI(shooter);
 
       shooter.character.src = shooterPath + shooterImgs.imgs.idle;
@@ -377,7 +390,7 @@ function StrongAttack(shooter, target) {
         UpdateButtons();
       }
     }
-  }, 10);
+  }, 100);
 }
 
 function DisableButtons() {
@@ -401,6 +414,10 @@ function Enemy() {
 function FinishFight() {
   console.log("FinishFight");
   whendiedlife = user.life;
+
+  EaseVolumeOut(500);
+
+  PlayTypeSound("died", 1);
 
   if (user.life == 0) {
     fightEnded.setAttribute("data-lost", "");
@@ -433,27 +450,17 @@ function FinishFight() {
   fightEnded__type.innerText = "ganhou";
   fightEnded__type.setAttribute("data-won", "");
 
-  EaseVolumeOut(3000);
-  music.volume = musicVolume;
-  PlaySound("Victory.mp3", 1);
+  setTimeout(() => {
+    if (hasMusic) {
+      musicVolume = 0.5;
+    }
+    PlaySound("Victory.mp3", 1);
+  }, 500);
 
   setTimeout(() => {
     ChangeMusic(musics.finishFight);
     music.play();
     EaseVolumeIn(musicVolume, 4000);
-    // EaseVolumeIn(0.5);
-
-    // setTimeout(() => {
-    //   ShowCredits();
-    // }, 1500);
     Enable(fightEnded);
   }, 3000);
 }
-
-// document.addEventListener("keydown", (e) => {
-//   if (e.code == "KeyX") {
-//     GetMusic();
-//   } else if (e.code == "KeyY") {
-//     InstaKill();
-//   }
-// });

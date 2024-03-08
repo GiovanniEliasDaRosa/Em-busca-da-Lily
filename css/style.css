@@ -6,10 +6,12 @@
   padding: 0;
   font-family: sans-serif;
   user-select: none;
+  -webkit-user-select: none;
 }
 
 body {
   height: 100vh;
+  height: 100svh;
   overflow: hidden;
 }
 
@@ -26,12 +28,37 @@ body {
   z-index: 100000;
 }
 
-.clicktoplay::after {
+.clicktoplay::after,
+.ismobile::after {
   content: "";
   position: absolute;
   inset: 0;
   background-color: hsla(0, 0%, 0%, 0.5);
   z-index: 99999;
+}
+
+.ismobile::before {
+  content: "Esse jogo não foi totalmente projetado para celular, algumas coisas podem não funcionar. Toque para continuar";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(
+    0deg,
+    transparent 0%,
+    rgb(218, 81, 27) 30%,
+    rgb(218, 81, 27) 70%,
+    transparent 100%
+  );
+  width: 100%;
+  padding: 2em 1em;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 600;
+  z-index: 100000;
 }
 
 a {
@@ -49,15 +76,9 @@ a {
   font-weight: 700;
 }
 
-a:hover {
-  color: rgb(0, 0, 0);
-  outline: 0;
-  background-position: 50% 100%;
-  /* border-bottom: 2px #fdca4c00 solid; */
-}
-
+a:hover,
 a:focus-visible {
-  color: rgb(113, 198, 247);
+  color: rgb(0, 0, 0);
   outline: 0;
   background-position: 50% 100%;
   /* border-bottom: 2px #fdca4c00 solid; */
@@ -82,8 +103,8 @@ a:focus-visible {
 }
 
 .btn:focus-visible {
-  background-color: hsl(0, 0%, 80%);
-  border-color: hsla(0, 0%, 100%, 0.8);
+  background-color: hsl(0, 0%, 70%);
+  border-color: hsla(0, 0%, 100%, 0.7);
 }
 
 #currentMusic {
@@ -93,9 +114,9 @@ a:focus-visible {
   left: 1em;
   color: white;
   z-index: 1000;
-  background-color: rgb(124, 124, 124);
-  box-shadow: inset 0 0 0 0.25em rgb(97, 97, 97);
-  border: solid 0.1em white;
+  background-color: hsl(0, 0%, 30%);
+  box-shadow: inset 0 0 0 0.25em hsl(0, 0%, 25%);
+  border: solid 0.1em hsl(0, 0%, 80%);
   padding: 1em;
   border-radius: 2em;
   min-width: 10em;
@@ -120,12 +141,83 @@ a:focus-visible {
   30%,
   60%,
   80% {
-    scale: 1;
+    transform: scale(1);
   }
   25%,
   50%,
   75%,
   100% {
-    scale: 1.5;
+    transform: scale(1.5);
+  }
+}
+
+#soundmusic {
+  position: absolute;
+  right: 0.5em;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 0.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  border-radius: 1em;
+  z-index: 10;
+}
+
+body:has(#menu:not([disabled])) #soundmusic {
+  top: 0.5em;
+}
+
+body:has(#menu[disabled]) #soundmusic {
+  bottom: 0.5em;
+}
+
+.soundmusic__button {
+  width: 3em;
+  height: 3em;
+  color: white;
+}
+
+#MusicButton[data-nomusic] {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  justify-items: center;
+  align-items: center;
+}
+
+#MusicButton[data-nomusic]::before,
+#MusicButton[data-nomusic]::after {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+@media (max-width: 1000px), (max-height: 700px) {
+  #currentMusic {
+    bottom: 0;
+    left: 0;
+    padding: 0.5em 1em;
+    border-radius: 0 1em 0 0;
+
+    border: solid 0.1em hsla(0, 0%, 100%, 0);
+    border-top-color: white;
+    border-right-color: white;
+  }
+}
+
+@media (max-width: 1200px) {
+  #soundmusic {
+    flex-direction: row;
+  }
+
+  body:has(#menu[disabled]) #soundmusic {
+    bottom: 0em;
+    right: 0em;
+    border-radius: 1em 0 0 0;
+  }
+
+  body:has(#menu:not([disabled])) #soundmusic {
+    top: 0em;
+    right: 0em;
+    border-radius: 0 0 0 1em;
   }
 }

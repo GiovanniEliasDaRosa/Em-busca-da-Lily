@@ -52,6 +52,7 @@
   height: 1em;
   border-radius: 0.5em;
   display: grid;
+  overflow: hidden;
 }
 
 .bar .fill {
@@ -159,6 +160,7 @@
   border-radius: 50%;
   background-color: red;
   border: solid 0.1em hsla(0, 0%, 100%, 0.25);
+  transition: all 100ms linear;
 }
 
 #meteor {
@@ -166,10 +168,45 @@
   box-shadow: 0 0 0.75em 0.25em hsla(29, 87%, 54%, 0.8), 0 0 1em 1em hsla(29, 87%, 54%, 0.4);
 }
 
+#meteor:not([disabled]) {
+  animation: 1s meteorPulse linear infinite;
+}
+
+@keyframes meteorPulse {
+  0% {
+    background-color: hsl(29, 85%, 46%);
+    box-shadow: 0 0 0.75em 0.25em hsla(29, 87%, 54%, 0.8), 0 0 1em 1em hsla(29, 87%, 54%, 0.4);
+  }
+  50% {
+    background-color: hsl(29, 100%, 68%);
+    box-shadow: 0 0 1em 0.5em hsla(29, 87%, 54%, 0.8), 0 0 1.5em 1.5em hsla(29, 87%, 54%, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0.75em 0.25em hsla(29, 87%, 54%, 0.8), 0 0 1em 1em hsla(29, 87%, 54%, 0.4);
+  }
+}
+
 #energyBall {
   top: 4em;
   background-color: hsl(214, 90%, 46%);
   box-shadow: 0 0 0.75em 0.25em hsla(214, 82%, 53%, 0.8), 0 0 1em 1em hsla(214, 82%, 53%, 0.4);
+}
+
+#energyBall:not([disabled]) {
+  animation: 1s energyBallPulse linear infinite;
+}
+@keyframes energyBallPulse {
+  0% {
+    background-color: hsl(214, 90%, 46%);
+    box-shadow: 0 0 0.75em 0.25em hsla(214, 82%, 53%, 0.8), 0 0 1em 1em hsla(214, 82%, 53%, 0.4);
+  }
+  50% {
+    background-color: hsl(214, 89%, 60%);
+    box-shadow: 0 0 1em 0.5em hsla(214, 82%, 53%, 0.8), 0 0 1.5em 1.5em hsla(214, 82%, 53%, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0.75em 0.25em hsla(214, 82%, 53%, 0.8), 0 0 1em 1em hsla(214, 82%, 53%, 0.4);
+  }
 }
 
 /* ground */
@@ -225,14 +262,19 @@
     filter: blur(0) brightness(1) invert(0);
   }
   33% {
-    filter: blur(0.5em) brightness(0.2) invert(0);
+    filter: blur(0em) brightness(0) invert(0);
   }
   66% {
-    filter: blur(1em) brightness(0) invert(1);
+    filter: blur(0.5em) brightness(0) invert(1);
     opacity: 1;
+    top: -11em;
+  }
+  88% {
+    opacity: 0.5;
   }
   100% {
-    filter: blur(3em) brightness(0) invert(1);
+    top: -16em;
+    filter: blur(4em) brightness(0) invert(1);
     opacity: 0;
   }
 }
@@ -289,6 +331,7 @@
 
 #fightEnded__buttons {
   display: flex;
+  flex-direction: column;
   gap: 0.5em;
 }
 
@@ -306,6 +349,8 @@
 }
 
 .fightEnded__buttons {
+  display: grid;
+  grid-template-columns: auto 1fr;
   font-size: 1.5rem;
 }
 
@@ -315,5 +360,42 @@
   }
   100% {
     background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+@media (max-width: 1000px) {
+  #fight__ground {
+    gap: min(20em, 20vw);
+  }
+  #fight__user {
+    justify-self: end;
+  }
+  #fight__enemy {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 1000px), (max-height: 700px) {
+  #fight__ground {
+    height: 6em;
+  }
+
+  .fight__ui {
+    gap: 0.25em;
+    width: 12em;
+  }
+  .user__section {
+    padding: 0.25em;
+  }
+  #attack {
+    gap: 0.25em;
+    flex: 0 0 100%;
+  }
+  .attack__button {
+    /* padding: 0.25em; */
+    flex: 1 1 auto;
+  }
+  .attack__show {
+    grid-template-columns: 1.2em 1fr;
   }
 }
