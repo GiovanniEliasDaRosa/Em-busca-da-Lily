@@ -6,7 +6,7 @@ const musics = {
   history: "Juhani Junkala [Chiptune Adventures] 2. Stage 2.wav",
   credits: "neo springcore.mp3",
   finishFight: "Juhani Junkala [Chiptune Adventures] 4. Stage Select.wav",
-  levels: ["Juhani Junkala [Chiptune Adventures] 3. Boss Fight.wav", "Boss Battle #1 V1.wav"],
+  levels: ["Juhani Junkala [Chiptune Adventures] 3. Boss Fight.wav", "Boss Battle 1.wav"],
 };
 
 var music = document.querySelector("#music");

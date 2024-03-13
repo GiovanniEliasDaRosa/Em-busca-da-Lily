@@ -2,6 +2,6 @@
 #aboutContainer,
 #options,
 #cofigurations {
-  backdrop-filter: none;
   -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }

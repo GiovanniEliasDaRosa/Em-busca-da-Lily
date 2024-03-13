@@ -84,22 +84,32 @@ typespeedslider.addEventListener("input", () => {
 });
 
 function UpdateTypeSpeed(bystorage = false) {
+  let realSpeed = 60;
   switch (Number(typespeedslider.value)) {
     case 40:
-      typespeedvalue.innerText = "Rápido";
+      typespeedvalue.innerText = "Devagar";
+      realSpeed = 100;
       break;
-    case 80:
+    case 60:
       typespeedvalue.innerText = "Meio devagar";
+      realSpeed = 80;
       break;
     case 100:
-      typespeedvalue.innerText = "Devagar";
+      typespeedvalue.innerText = "Rápido";
+      realSpeed = 40;
       break;
     default:
-      // or 60
+      // or 80
+      realSpeed = 60;
+      typespeedslider.value = 80;
       typespeedvalue.innerText = "Normal";
       break;
   }
-  typespeed = clamp(Number(typespeedslider.value), 40, 100);
+  // realSpeed is inverted of the speed
+  //  typespeedslider.value == 100  ->  realSpeed = 60
+  //  typespeedslider.value == 40   ->  realSpeed = 100
+
+  typespeed = clamp(Number(realSpeed), 40, 100);
   if (bystorage) {
     return;
   }
@@ -144,8 +154,8 @@ function UpdateAnimateMenu(bystorage = false) {
     animateMenu = 0;
   }
 
-  console.log(animateMenu);
-  console.log(animateMenuOptions[animateMenu]);
+  // console.log(animateMenu);
+  // console.log(animateMenuOptions[animateMenu]);
 
   switch (animateMenu) {
     case 0:

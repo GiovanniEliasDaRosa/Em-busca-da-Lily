@@ -247,7 +247,7 @@ function LightAttack(shooter, target) {
   }
 
   var startX = shooterBound.x + usewidth;
-  var startY = shooterBound.y + shooterBound.height / 2 - 28;
+  var startY = shooterBound.y + shooterBound.height / 2 - 16;
   const targetBoundX = targetBound.x + usewidthtarget;
 
   var speed = (targetBoundX - startX) / 10;
@@ -412,7 +412,7 @@ function Enemy() {
 }
 
 function FinishFight() {
-  console.log("FinishFight");
+  // console.log("FinishFight");
   whendiedlife = user.life;
 
   EaseVolumeOut(500);

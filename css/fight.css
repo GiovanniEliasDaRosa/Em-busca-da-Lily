@@ -161,6 +161,7 @@
   background-color: red;
   border: solid 0.1em hsla(0, 0%, 100%, 0.25);
   transition: all 100ms linear;
+  transform: translateX(-50%) translateY(-50%);
 }
 
 #meteor {
@@ -226,7 +227,7 @@
 .fight__characters {
   width: 4em;
   height: 2em;
-  background-color: hsla(0, 0%, 0%, 0.2);
+  /* background-color: hsla(0, 0%, 0%, 0.2); */
   position: relative;
   border-radius: 50%;
 }
@@ -244,10 +245,10 @@
   left: calc(50% - 0.5em);
 }
 
-.fight__characters:has([data-dead]) {
+/* .fight__characters:has([data-dead]) {
   transition: 1s ease-out 2s;
   background-color: hsla(0, 0%, 0%, 0);
-}
+} */
 
 [data-dead] {
   animation: 1s rotateUser cubic-bezier(1, 0.05, 0.7, 1.18) forwards, 4s dead ease-out forwards;

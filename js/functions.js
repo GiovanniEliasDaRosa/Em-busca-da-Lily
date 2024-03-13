@@ -118,10 +118,10 @@ function GetMusic() {
   EaseVolumeIn(musicVolume);
 }
 
-document.addEventListener("keydown", (e) => {
-  if (e.code == "KeyX") {
-    GetMusic();
-  } else if (e.code == "KeyY") {
-    InstaKill();
-  }
-});
+// document.addEventListener("keydown", (e) => {
+//   if (e.code == "KeyX") {
+//     GetMusic();
+//   } else if (e.code == "KeyY") {
+//     InstaKill();
+//   }
+// });

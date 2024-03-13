@@ -2,8 +2,8 @@
   position: absolute;
   inset: 0;
   background-color: hsla(0, 0%, 0%, 0.5);
-  backdrop-filter: blur(0.2em);
   -webkit-backdrop-filter: blur(0.2em);
+  backdrop-filter: blur(0.2em);
   display: flex;
   justify-content: center;
   align-items: center;
