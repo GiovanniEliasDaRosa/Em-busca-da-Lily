@@ -2,8 +2,6 @@
 
 ## Sobre
 
----
-
 Em busca da Lily é um jogo totalmente original onde tudo nele foi feito por mim, Giovanni Elias da Rosa.
 
 > Tiago Citrangulo da Silva começou a criar com o mesmo nome e estilo, mas ele acabou parando de criar, então eu peguei inspiração e fiz esse.
@@ -13,23 +11,17 @@ consegui, mas a versão dele era inconpleta, e foi ai que eu decidi continuar ne
 
 ## Sobre a história
 
----
-
 O jogo conta a história do **Brad** que teve sua irmã sequestrada por um cara que ele devia dinheiro, durante a jornada, você e **Brad** terão que ficar mais fortes, mais habilidosos e descobrir onde a **Lily**(a irmã) está sendo mantida.
 
 [Clique aqui para jogar](https://giovannieliasdarosa.github.io/Em-busca-da-Lily)
 
 ## Creditos
 
----
-
 Jogo feito por [Giovanni Elias da Rosa](https://github.com/GiovanniEliasDaRosa)
 
 Inspiração pega pelo jogo do [Tiago C. da Silva](https://github.com/TiagoCitranguloDaSilva)
 
 ## Créditos a músicas e efeitos sonoros usados
-
----
 
 ### Efeitos sonoros
 
