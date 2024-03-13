@@ -1,5 +1,7 @@
 # Em busca da Lily
 
+![Imagem de capa](https://raw.githubusercontent.com/GiovanniEliasDaRosa/Em-busca-da-Lily/main/Card.png)
+
 ## Sobre
 
 Em busca da Lily é um jogo totalmente original onde tudo nele foi feito por mim, Giovanni Elias da Rosa.
